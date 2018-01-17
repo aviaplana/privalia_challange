@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.novoda:rxpresso-0.2.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/rxpresso-0.2.0.aar/2c26062d0203af9725d6d8daff1171fb/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/rxpresso-0.2.0.aar/2c26062d0203af9725d6d8daff1171fb/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.novoda/rxpresso/0.2.0/461bbbdbc00facc65663c3d05d980b9d280524c6/rxpresso-0.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

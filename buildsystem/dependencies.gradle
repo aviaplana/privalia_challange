@@ -1,0 +1,232 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "25.0.2"
+    androidMinSdkVersion = 15
+    androidTargetSdkVersion = 25
+    androidCompileSdkVersion = 25
+
+
+
+    libVersion = [
+            androidAnnotations:         '25.3.1',
+            appCompat:                  '25.3.1',
+            assertJ:                    '1.7.1',
+            autoValue:                  '1.2',
+            autoValueGson:              '0.4.5',
+            autoValueParcel:            '0.2.5',
+            autoValueParcelAdapter:     '0.2.5',
+
+            constraintLayout:           '1.0.2',
+
+            dagger:                     '2.11',
+
+            espresso:                   '2.2.2',
+            espressoContrib:            '2.2',
+
+            gson:                       '2.3',
+            gsonJodatimeSerializer:     '1.5.0',
+
+            javaxAnnotation:            '1.0',
+            javaxInject:                '1',
+            joda:                       '2.9.5.1',
+            jUnit:                      '4.12',
+
+            materialDesign:             '25.2.0',
+            mockito:                    '1.9.5',
+            multidex:                   '1.0.0',
+
+            leakCanary:                 '1.3.1',
+            lifeCycle:                  '1.0.0',
+            lombok:                     '1.16.18',
+
+            okHttp:                     '3.5.0',
+            okHttpLoggingInterceptor:   '3.5.0',
+
+            picasso:                    '2.5.2',
+
+            recyclerView:               '21.0.3',
+            retrofit:                   '2.1.0',
+            retrofitConverterGson:      '2.1.0',
+            retrofitAdapterRxJava:      '2.2.0',
+            retroLambdaConfig:          '2.5.1',
+            robolectric:                '3.3.2',
+            rxAndroid:                  '2.0.1',
+            rxJava:                     '2.0.2',
+            rxPresso:                   '0.2.0',
+
+            testingSupportLib:          '0.1',
+            testRules:                  '0.5',
+            testRunner:                 '0.5',
+
+
+    ]
+
+    lib = [
+            androidAnnotations:         "com.android.support:support-annotations:${libVersion.androidAnnotations}",
+            appCompat:                  "com.android.support:appcompat-v7:${libVersion.appCompat}",
+            assertj:                    "org.assertj:assertj-core:${libVersion.assertJ}",
+            autoValue:                  "com.google.auto.value:auto-value:${libVersion.autoValue}",
+            autoValueGson:              "com.ryanharter.auto.value:auto-value-gson:${libVersion.autoValueGson}",
+            autoValueParcel:            "com.ryanharter.auto.value:auto-value-parcel:${libVersion.autoValueParcel}",
+            autoValueParcelAdapter:     "com.ryanharter.auto.value:auto-value-parcel-adapter:${libVersion.autoValueParcelAdapter}",
+
+            constraintLayout:           "com.android.support.constraint:constraint-layout:${libVersion.constraintLayout}",
+
+            espresso:                   "com.android.support.test.espresso:espresso-core:${libVersion.espresso}",
+            espressoContrib:            "com.android.support.test.espresso:espresso-contrib:${libVersion.espressoContrib}",
+
+            dagger:                     "com.google.dagger:dagger:${libVersion.dagger}",
+            daggerAndroid:              "com.google.dagger:dagger-android:${libVersion.dagger}",
+            daggerAndroidProcessor:     "com.google.dagger:dagger-android-processor:${libVersion.dagger}",
+            daggerAndroidSupport:       "com.google.dagger:dagger-android-support:${libVersion.dagger}",
+            daggerCompiler:             "com.google.dagger:dagger-compiler:${libVersion.dagger}",
+
+            gson:                       "com.google.code.gson:gson:${libVersion.gson}",
+            gsonJodatimeSerializer:     "com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:${libVersion.gsonJodatimeSerializer}",
+
+            javaxAnnotation:            "javax.annotation:jsr250-api:${libVersion.javaxAnnotation}",
+            javaxInject:                "javax.inject:javax.inject:${libVersion.javaxInject}",
+            joda:                       "net.danlew:android.joda:${libVersion.joda}",
+            junit:                      "junit:junit:${libVersion.jUnit}",
+
+            leakCanary:                 "com.squareup.leakcanary:leakcanary-android:${libVersion.leakCanary}",
+            lifeCycleExtensions:        "android.arch.lifecycle:extensions:${libVersion.lifeCycle}",
+            lifeCycleCommonJava8:       "android.arch.lifecycle:common-java8:${libVersion.lifeCycle}",
+            lifeCycleReactiveStreams:   "android.arch.lifecycle:reactivestreams:${libVersion.lifeCycle}",
+            lombok:                     "org.projectlombok:lombok:${libVersion.lombok}",
+
+            materialDesign:             "com.android.support:design:${libVersion.materialDesign}",
+            multidex:                   "com.android.support:multidex:${libVersion.multidex}",
+            mockito:                    "org.mockito:mockito-core:${libVersion.mockito}",
+
+            okHttp:                     "com.squareup.okhttp3:okhttp:${libVersion.okHttp}",
+            okHttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:${libVersion.okHttpLoggingInterceptor}",
+
+            picasso:                    "com.squareup.picasso:picasso:${libVersion.picasso}",
+
+            recyclerView:               "com.android.support:recyclerview-v7:${libVersion.recyclerView}",
+            retrofit:                   "com.squareup.retrofit2:retrofit:${libVersion.retrofit}",
+            retrofitAdapterRxJava:      "com.squareup.retrofit2:adapter-rxjava2:${libVersion.retrofitAdapterRxJava}",
+            retrofitConverterGson:      "com.squareup.retrofit2:converter-gson:${libVersion.retrofitConverterGson}",
+            retrolambdaConfig:          "net.orfjackal.retrolambda:retrolambda:${libVersion.retroLambdaConfig}",
+            roboelectric:               "org.robolectric:robolectric:${libVersion.robolectric}",
+            rxAndroid:                  "io.reactivex.rxjava2:rxandroid:${libVersion.rxAndroid}",
+            rxJava:                     "io.reactivex.rxjava2:rxjava:${libVersion.rxJava}",
+            rxPresso:                   "com.novoda:rxpresso:${libVersion.rxPresso}",
+
+            testingSupportLib:          "com.android.support.test:testing-support-lib:${libVersion.testingSupportLib}",
+            testRules:                  "com.android.support.test:rules:${libVersion.testRules}",
+            testRunner:                 "com.android.support.test:runner:${libVersion.testRunner}",
+    ]
+
+//Libraries
+    presentationDependencies = [
+            appCompat:                  lib.appCompat,
+
+            constraintLayout:           lib.constraintLayout,
+
+            dagger:                     lib.dagger,
+            daggerAndroid:              lib.daggerAndroid,
+            daggerAndroidProcessor:     lib.daggerAndroidProcessor,
+            daggerAndroidSupport:       lib.daggerAndroidSupport,
+            daggerCompiler:             lib.daggerCompiler,
+
+            javaxAnnotation:            lib.javaxAnnotation,
+
+            materialDesign:             lib.materialDesign,
+            multidex:                   lib.multidex,
+
+            lifeCycleCommonJava8:       lib.lifeCycleCommonJava8,
+            lifeCycleExtensions:        lib.lifeCycleExtensions,
+            lifeCycleReactiveStreams:   lib.lifeCycleReactiveStreams,
+
+            okHttp:                     lib.okHttp,
+
+            picasso:                    lib.picasso,
+
+            recyclerView:               lib.recyclerView,
+            retrofit:                   lib.retrofit,
+            retrofitConverterGson:      lib.retrofitConverterGson,
+            retrofitAdapterRxJava:      lib.retrofitAdapterRxJava,
+            rxJava:                     lib.rxJava,
+            rxAndroid:                  lib.rxAndroid,
+    ]
+
+
+
+
+
+    presentationTestDependencies = [
+            androidAnnotations: lib.androidAnnotations,
+
+            espresso:           lib.espresso,
+            espressoContrib:    lib.espressoContrib,
+
+            junit:              lib.junit,
+
+            mockito:            lib.mockito,
+
+            rxPresso:           lib.rxPresso,
+
+            testRules:          lib.testRules,
+            testRunner:         lib.testRunner,
+
+    ]
+
+    domainDependencies = [
+            androidAnnotations:    lib.androidAnnotations,
+
+            javaxAnnotation:       lib.javaxAnnotation,
+            javaxInject:           lib.javaxInject,
+
+            lombok:                lib.lombok,
+
+            retrolambdaConfig:     lib.retrolambdaConfig,
+            rxJava:                lib.rxJava,
+    ]
+
+    domainTestDependencies = [
+            assertj:            lib.assertj,
+            junit:              lib.junit,
+            mockito:            lib.mockito,
+            rxJava:             lib.rxJava,
+    ]
+
+    dataDependencies = [
+            androidAnnotations:         lib.androidAnnotations,
+
+            dagger:                     lib.dagger,
+            daggerCompiler:             lib.daggerCompiler,
+
+            gson:                       lib.gson,
+
+            javaxAnnotation:            lib.javaxAnnotation,
+            javaxInject:                lib.javaxInject,
+
+            lombok:                     lib.lombok,
+
+            okHttp:                     lib.okHttp,
+            okHttpLoggingInterceptor:   lib.okHttpLoggingInterceptor,
+
+            retrofit:                   lib.retrofit,
+            rxAndroid:                  lib.rxAndroid,
+            rxJava:                     lib.rxJava,
+    ]
+
+    dataTestDependencies = [
+            assertj:            lib.assertj,
+            junit:              lib.junit,
+            mockito:            lib.mockito,
+            robolectric:        lib.roboelectric
+    ]
+
+    developmentDependencies = [
+            leakCanary: lib.leakCanary,
+    ]
+}

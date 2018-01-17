@@ -1,0 +1,80 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/black</item>
+    </style>
+
+    <style name="WidthWrapHeightWrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WidthWrapHeightMatch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WidthMatchHeightWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WidthMatchHeightMatch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WidthWrapHeightWrap.vertical" parent="WidthWrapHeightWrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WidthWrapHeightWrap.horizontal" parent="WidthWrapHeightWrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+
+    <style name="WidthWrapHeightMatch.vertical" parent="WidthWrapHeightMatch">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WidthWrapHeightMatch.horizontal" parent="WidthWrapHeightMatch">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="WidthMatchHeightWrap.vertical" parent="WidthMatchHeightWrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WidthMatchHeightWrap.horizontal" parent="WidthMatchHeightWrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="WidthMatchHeightMatch.vertical" parent="WidthMatchHeightMatch">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WidthMatchHeightMatch.horizontal" parent="WidthMatchHeightMatch">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- TOOLBAR -->
+    <style name="toolbar">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+    </style>
+
+    <style name="toolbar.titleText">
+        <item name="android:color">@color/black</item>
+    </style>
+
+
+</resources>

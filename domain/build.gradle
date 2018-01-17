@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+configurations {
+    provided
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    provided domainDependencies.javaxAnnotation
+
+    compile domainDependencies.javaxInject
+    compile domainDependencies.rxJava
+    compileOnly domainDependencies.lombok
+
+
+    testCompile domainTestDependencies.junit
+    testCompile domainTestDependencies.mockito
+    compile domainTestDependencies.rxJava
+}

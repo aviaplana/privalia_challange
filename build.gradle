@@ -1,0 +1,36 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'buildsystem/dependencies.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "io.realm:realm-gradle-plugin:4.3.1"
+
+    }
+}
+
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.google.com' }
+        google()
+    }
+
+    ext {
+        androidApplicationId = 'com.privalia.albert.challange.presentation'
+        androidVersionCode = 1
+        androidVersionName = "0.2"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
