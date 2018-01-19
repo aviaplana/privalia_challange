@@ -14,7 +14,10 @@ import javax.inject.Named;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -32,9 +35,11 @@ public class NetworkModule {
 
     @AppScope
     @Provides
-    public OkHttpClient okHttpClient(HttpLoggingInterceptor loggingInterceptor, Cache cache, Context context) {
+    public OkHttpClient okHttpClient(HttpLoggingInterceptor loggingInterceptor,
+                                     Interceptor apiKeyInterceptor, Cache cache, Context context) {
         return new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(apiKeyInterceptor)
                 .cache(cache)
                 .build();
     }
@@ -44,6 +49,26 @@ public class NetworkModule {
     public HttpLoggingInterceptor httpLoggingInterceptor() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         return logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+    }
+
+    @AppScope
+    @Provides
+    public Interceptor apiKeyInterceptor() {
+        return chain -> {
+            Request original = chain.request();
+            HttpUrl originalHttpUrl = original.url();
+
+            HttpUrl url = originalHttpUrl.newBuilder()
+                    .addQueryParameter("apikey", BuildConfig.API_KEY)
+                    .build();
+
+            // Request customization: add request headers
+            Request.Builder requestBuilder = original.newBuilder()
+                    .url(url);
+
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
+        };
     }
 
     @AppScope

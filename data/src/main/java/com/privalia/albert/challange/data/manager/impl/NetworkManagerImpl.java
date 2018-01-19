@@ -1,15 +1,11 @@
 package com.privalia.albert.challange.data.manager.impl;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
-import android.net.NetworkRequest;
-import android.os.Build;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,9 +14,9 @@ import com.privalia.albert.challange.data.manager.NetworkManager;
 
 public class NetworkManagerImpl extends BroadcastReceiver implements NetworkManager {
 
-    private Context mContext;
+    private Context context;
 
-    private boolean mAvailable = false;
+    private boolean available = false;
 
     private IntentFilter connectivityIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
 
@@ -32,17 +28,19 @@ public class NetworkManagerImpl extends BroadcastReceiver implements NetworkMana
 
     public NetworkManagerImpl(Context context) {
         super();
-         mContext = context;
-         mAvailable = isNetworkAvailable();
+         this.context = context;
+         this.available = isNetworkAvailable();
         //registerConnectivityNetworkMonitorForAPI21AndUp();
     }
 
     @Override
     public boolean isNetworkAvailable() {
-        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm =
+                (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (null != activeNetwork) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI ||
+                    activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
                 return true;
             }
         }
@@ -51,12 +49,12 @@ public class NetworkManagerImpl extends BroadcastReceiver implements NetworkMana
 
     @Override
     public void start() {
-        mContext.registerReceiver(this, connectivityIntentFilter);
+        this.context.registerReceiver(this, connectivityIntentFilter);
     }
 
     @Override
     public void stop() {
-        mContext.unregisterReceiver(this);
+        this.context.unregisterReceiver(this);
     }
 
     @Override
@@ -76,8 +74,8 @@ public class NetworkManagerImpl extends BroadcastReceiver implements NetworkMana
             boolean available = isNetworkAvailable();
 
             // This will guarantee that listeners are called only when network state changes.
-            if (mAvailable != available) {
-                mAvailable = available;
+            if (this.available != available) {
+                this.available = available;
                 for (Listener listener : mListeners.values()) {
                     if (listener != null) {
                         if (available) listener.onNetworkAvailable();

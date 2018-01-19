@@ -9,7 +9,7 @@ import io.reactivex.Scheduler;
  * in the application should implement this contract).
  *
  */
-public abstract class UseCase<REPOSITORY, RESPONSE_DATA> {
+public abstract class UseCase<REPOSITORY, RESPONSE_DATA, PARAMS> {
     protected final Scheduler mObserveThread;
     protected final Scheduler mSubscribeThread;
     protected final REPOSITORY mRepository;
@@ -28,7 +28,9 @@ public abstract class UseCase<REPOSITORY, RESPONSE_DATA> {
                 .unsubscribeOn(mSubscribeThread);
     }
 
-    protected abstract Observable<RESPONSE_DATA> buildObservable();
+    protected abstract Observable<RESPONSE_DATA> buildObservable(PARAMS params);
 
-    public Observable<RESPONSE_DATA> execute() { return addSchedulers(buildObservable());}
+    public Observable<RESPONSE_DATA> execute(PARAMS params) {
+        return addSchedulers(buildObservable(params));
+    }
 }

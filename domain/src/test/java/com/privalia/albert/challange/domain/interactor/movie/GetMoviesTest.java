@@ -26,6 +26,11 @@ public class GetMoviesTest extends BaseUseCaseTest<GetMovies, MovieRepository> {
     @Test
     @Override
     public void testBuildUseCaseObservable() {
-        testBuildUseCaseObservable(null, () -> verify(mockRepository).getMovies());
+        final String testOrder = "testOrder";
+        final int testPage = 1;
+        final GetMovies.Params testParams = GetMovies.Params.listParams(testOrder, testPage);
+
+        testBuildUseCaseObservable(testParams,
+                                    () -> verify(mockRepository).getMovies(testOrder, testPage));
     }
 }

@@ -13,5 +13,5 @@ import io.reactivex.Observable;
 public interface MovieRepository extends Repository {
 
     /** Get an {@link Observable} which will emit a list of {@link MovieDto} movies. */
-    Observable<List<MovieDto>> getMovies();
+    Observable<List<MovieDto>> getMovies(String orderBy, int page);
 }

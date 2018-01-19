@@ -43,7 +43,7 @@ public abstract class BaseUseCaseTest<USE_CASE extends UseCase, REPOSITORY exten
     public abstract void testBuildUseCaseObservable();
 
     protected void testBuildUseCaseObservable(Object requestData, Action action) {
-        useCase.buildObservable();
+        useCase.buildObservable(requestData);
 
         try {
             action.run();

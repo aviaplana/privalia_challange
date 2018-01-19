@@ -15,7 +15,7 @@ import io.reactivex.Scheduler;
  * Created by albert on 18/1/18.
  */
 
-public class GetMovies extends UseCase<MovieRepository, List<MovieDto>> {
+public class GetMovies extends UseCase<MovieRepository, List<MovieDto>, GetMovies.Params> {
 
     public GetMovies(MovieRepository movieRepository,
                      @Named("main_thread") Scheduler postExecutionThread,
@@ -24,7 +24,25 @@ public class GetMovies extends UseCase<MovieRepository, List<MovieDto>> {
     }
 
     @Override
-    protected Observable<List<MovieDto>> buildObservable() {
-        return mRepository.getMovies();
+    protected Observable<List<MovieDto>> buildObservable(Params params) {
+        if (params != null) {
+            return mRepository.getMovies(params.orderBy, params.page);
+        } else {
+            return Observable.empty();
+        }
+    }
+
+    public static final class Params {
+        private final int page;
+        private final String orderBy;
+
+        private Params(String orderBy, int page) {
+            this.orderBy = orderBy;
+            this.page = page;
+        }
+
+        public static Params listParams(String orderBy, int page) {
+            return new Params(orderBy, page);
+        }
     }
 }
