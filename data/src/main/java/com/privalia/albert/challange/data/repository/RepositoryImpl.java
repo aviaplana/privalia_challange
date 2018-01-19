@@ -15,27 +15,22 @@ import java.util.Map;
  */
 
 public abstract class RepositoryImpl
-        <DATA_STORE extends DataSource,
-                CACHE extends Cache,
-                ENTITY_DTO_MAPPER extends BaseMapper> implements Repository {
+        <DATA_STORE extends DataSource, ENTITY_DTO_MAPPER extends BaseMapper>
+        implements Repository {
 
-    protected NetworkManager mNetworkManager;
+    protected NetworkManager networkManager;
 
-    protected DATA_STORE mDataStore;
+    protected DATA_STORE dataStore;
 
-    protected CACHE mCache;
+    protected ENTITY_DTO_MAPPER entityDtoMapper;
 
-    protected ENTITY_DTO_MAPPER mEntityDtoMapper;
-
-    protected final Map<String, UseCase> mUseCasesMap = new HashMap<>();
+    protected final Map<String, UseCase> useCasesMap = new HashMap<>();
 
     public RepositoryImpl(NetworkManager networkManager,
                           DATA_STORE dataStore,
-                          CACHE cache,
                           ENTITY_DTO_MAPPER entityDtoMapper) {
-        mNetworkManager = networkManager;
-        mDataStore = dataStore;
-        mCache = cache;
-        mEntityDtoMapper = entityDtoMapper;
+        this.networkManager = networkManager;
+        this.dataStore = dataStore;
+        this.entityDtoMapper = entityDtoMapper;
     }
 }
