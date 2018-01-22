@@ -2,7 +2,6 @@ package com.privalia.albert.challange.data.repository;
 
 import com.privalia.albert.challange.data.manager.NetworkManager;
 import com.privalia.albert.challange.data.mapper.BaseMapper;
-import com.privalia.albert.challange.data.store.datasource.Cache;
 import com.privalia.albert.challange.data.store.datasource.DataSource;
 import com.privalia.albert.challange.domain.interactor.UseCase;
 import com.privalia.albert.challange.domain.repository.Repository;

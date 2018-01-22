@@ -11,12 +11,12 @@ import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 
 /**
- * Created by albert on 18/1/18.
+ * Created by albert on 22/1/18.
  */
 
-public class GetMovies extends UseCase<MovieRepository, PaginatedDto<MovieDto>, GetMovies.Params> {
+public class SearchMovies extends UseCase<MovieRepository, PaginatedDto<MovieDto>, SearchMovies.Params> {
 
-    public GetMovies(MovieRepository movieRepository,
+    public SearchMovies(MovieRepository movieRepository,
                      @Named("main_thread") Scheduler postExecutionThread,
                      @Named("io_thread") Scheduler executionThread) {
         super(movieRepository, postExecutionThread, executionThread);
@@ -25,7 +25,7 @@ public class GetMovies extends UseCase<MovieRepository, PaginatedDto<MovieDto>, 
     @Override
     protected Observable<PaginatedDto<MovieDto>> buildObservable(Params params) {
         if (params != null) {
-            return mRepository.getMovies(params.orderBy, params.ascendant, params.page);
+            return mRepository.searchMovies(params.query, params.page);
         } else {
             return Observable.empty();
         }
@@ -34,17 +34,15 @@ public class GetMovies extends UseCase<MovieRepository, PaginatedDto<MovieDto>, 
     public static final class Params {
 
         private final int page;
-        private final String orderBy;
-        private final boolean ascendant;
+        private final String query;
 
-        private Params(String orderBy, boolean ascendant, int page) {
-            this.orderBy = orderBy;
+        private Params(String query, int page) {
+            this.query = query;
             this.page = page;
-            this.ascendant = ascendant;
         }
 
-        public static Params listParams(String orderBy, boolean ascendant, int page) {
-            return new Params(orderBy, ascendant, page);
+        public static Params listParams(String query, int page) {
+            return new Params(query, page);
         }
     }
 }

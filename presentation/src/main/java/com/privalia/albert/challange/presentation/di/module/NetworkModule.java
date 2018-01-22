@@ -36,7 +36,7 @@ public class NetworkModule {
     @AppScope
     @Provides
     public OkHttpClient okHttpClient(HttpLoggingInterceptor loggingInterceptor,
-                                     Interceptor apiKeyInterceptor, Cache cache, Context context) {
+                                     Interceptor apiKeyInterceptor, Cache cache) {
         return new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .addInterceptor(apiKeyInterceptor)
@@ -62,7 +62,6 @@ public class NetworkModule {
                     .addQueryParameter("apikey", BuildConfig.API_KEY)
                     .build();
 
-            // Request customization: add request headers
             Request.Builder requestBuilder = original.newBuilder()
                     .url(url);
 

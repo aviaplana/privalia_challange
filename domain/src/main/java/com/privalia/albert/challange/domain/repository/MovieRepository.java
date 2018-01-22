@@ -1,6 +1,7 @@
 package com.privalia.albert.challange.domain.repository;
 
 import com.privalia.albert.challange.domain.dto.MovieDto;
+import com.privalia.albert.challange.domain.dto.PaginatedDto;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import io.reactivex.Observable;
 
 public interface MovieRepository extends Repository {
 
-    /** Get an {@link Observable} which will emit a list of {@link MovieDto} movies. */
-    Observable<List<MovieDto>> getMovies(String orderBy, int page);
+    Observable<PaginatedDto<MovieDto>> getMovies(String orderBy, boolean ascendant, int page);
+
+    Observable<PaginatedDto<MovieDto>> searchMovies(String query, int page);
 }

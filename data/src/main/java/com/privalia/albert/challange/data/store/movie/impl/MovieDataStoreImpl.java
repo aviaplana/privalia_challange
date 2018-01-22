@@ -1,6 +1,7 @@
 package com.privalia.albert.challange.data.store.movie.impl;
 
 import com.privalia.albert.challange.data.entity.MovieEntity;
+import com.privalia.albert.challange.data.entity.PaginatedEntity;
 import com.privalia.albert.challange.data.net.Api;
 import com.privalia.albert.challange.data.store.movie.MovieDataStore;
 
@@ -24,9 +25,17 @@ public class MovieDataStoreImpl implements MovieDataStore {
     }
 
     @Override
-    public Observable<List<MovieEntity>> get(String orderBy, int page) {
-        // In the api documentation ListID is optional, but if it's not defined, you get an error as response
-        // TODO: Re-check if listId is mandatory
-        return this.api.movies(1, orderBy, page);
+    public Observable<PaginatedEntity<MovieEntity>> get(String orderBy, boolean ascendant,
+                                                        int page) {
+
+        String orderByQuery = orderBy + "." + (ascendant ? "asc" : "desc");
+
+        return this.api.movies(orderByQuery, page);
+    }
+
+    @Override
+    public Observable<PaginatedEntity<MovieEntity>> search(String query, int page) {
+
+        return this.api.searchMovies(query, page);
     }
 }

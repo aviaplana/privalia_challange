@@ -1,9 +1,9 @@
 package com.privalia.albert.challange.data.store.movie;
 
 import com.privalia.albert.challange.data.entity.MovieEntity;
+import com.privalia.albert.challange.data.entity.PaginatedEntity;
 import com.privalia.albert.challange.data.store.datasource.DataSource;
 
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -12,5 +12,7 @@ import io.reactivex.Observable;
  */
 
 public interface MovieDataStore extends DataSource {
-    Observable<List<MovieEntity>> get(String orderBy, int page);
+    Observable<PaginatedEntity<MovieEntity>> get(String orderBy, boolean ascendant, int page);
+
+    Observable<PaginatedEntity<MovieEntity>> search(String query, int page);
 }

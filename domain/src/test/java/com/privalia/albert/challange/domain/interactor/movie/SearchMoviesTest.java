@@ -9,10 +9,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created by albert on 18/1/18.
+ * Created by albert on 22/1/18.
  */
 
-public class GetMoviesTest extends BaseUseCaseTest<GetMovies, MovieRepository> {
+public class SearchMoviesTest extends BaseUseCaseTest<GetMovies, MovieRepository> {
     @Override
     protected GetMovies createUseCase() {
         return new GetMovies(mockRepository, mockThreadScheduler, mockPostExecutionScheduler);
@@ -26,12 +26,11 @@ public class GetMoviesTest extends BaseUseCaseTest<GetMovies, MovieRepository> {
     @Test
     @Override
     public void testBuildUseCaseObservable() {
-        final String testOrder = "testOrder";
-        final boolean isAsc = true;
+        final String testQuery = "test";
         final int testPage = 1;
-        final GetMovies.Params testParams = GetMovies.Params.listParams(testOrder, isAsc, testPage);
+        final SearchMovies.Params testParams = SearchMovies.Params.listParams(testQuery, testPage);
 
         testBuildUseCaseObservable(testParams,
-                                () -> verify(mockRepository).getMovies(testOrder, isAsc, testPage));
+                () -> verify(mockRepository).searchMovies(testQuery, testPage));
     }
 }
