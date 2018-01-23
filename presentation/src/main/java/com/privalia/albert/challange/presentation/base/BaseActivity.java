@@ -10,16 +10,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.privalia.albert.challange.presentation.base.BaseViewModel;
 import com.privalia.albert.challange.presentation.base.contract.FragmentCallbackInterface;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
 
 
@@ -31,12 +28,12 @@ public abstract class BaseActivity<VIEWDATABINDING extends ViewDataBinding,
     // TODO
     // this can probably depend on isLoading variable of BaseViewModel,
     // since its going to be common for all the activities
-    private ProgressDialog mProgressDialog;
+    private ProgressDialog progressDialog;
 
-    private VIEWDATABINDING mViewDataBinding;
+    private VIEWDATABINDING viewDataBinding;
 
     @Inject
-    protected VIEWMODEL mViewModel;
+    protected VIEWMODEL viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,10 +42,10 @@ public abstract class BaseActivity<VIEWDATABINDING extends ViewDataBinding,
     }
 
     private void performDataBinding() {
-        mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
-        this.mViewModel = mViewModel == null ? getViewModel() : mViewModel;
-        mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
-        mViewDataBinding.executePendingBindings();
+        this.viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
+        this.viewModel = this.viewModel == null ? getViewModel() : this.viewModel;
+        this.viewDataBinding.setVariable(getBindingVariable(), this.viewModel);
+        this.viewDataBinding.executePendingBindings();
     }
 
     /*
@@ -95,13 +92,13 @@ public abstract class BaseActivity<VIEWDATABINDING extends ViewDataBinding,
     }
 
     public void hideLoading() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.cancel();
+        if (this.progressDialog != null && this.progressDialog.isShowing()) {
+            this.progressDialog.cancel();
         }
     }
 
     public VIEWDATABINDING getViewDataBinding() {
-        return mViewDataBinding;
+        return this.viewDataBinding;
     }
 
     /**
@@ -124,13 +121,6 @@ public abstract class BaseActivity<VIEWDATABINDING extends ViewDataBinding,
     public abstract
     @LayoutRes
     int getLayoutId();
-
-    //protected abstract void injectMembers(HasActivitySubcomponentBuilders hasActivitySubcomponentBuilders);
-
-    /*
-    public void performDependencyInjection() {
-        injectMembers((BaseApplication) getApplication());
-    }*/
 
 }
 

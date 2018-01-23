@@ -6,42 +6,29 @@
     tools:context="com.mindorks.framework.mvvm.ui.main.MainActivity">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
             name="viewModel"
             type="com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel" />
-
     </data>
 
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v4.widget.DrawerLayout
-
-            android:id="@+id/drawerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+        style="@style/WidthMatchHeightMatch">
 
             <android.support.design.widget.CoordinatorLayout
                 android:id="@+id/clRootView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/WidthMatchHeightMatch"
                 android:clipChildren="false">
 
                 <LinearLayout
                     android:id="@+id/activityMain"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/WidthMatchHeightMatch"
                     android:orientation="vertical">
 
                     <android.support.design.widget.AppBarLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/WidthMatchHeightWrap"
                         app:elevation="5dp">
 
                         <android.support.v7.widget.Toolbar
@@ -61,28 +48,6 @@
 
                 </LinearLayout>
             </android.support.design.widget.CoordinatorLayout>
-
-            <android.support.design.widget.NavigationView
-                android:id="@+id/navigationView"
-                style="@style/Widget.Design.NavigationView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@color/white"
-                app:itemBackground="@color/white"
-                app:itemIconTint="@color/blue_a100"
-                app:itemTextColor="@color/blue_a100">
-
-                <TextView
-                    android:id="@+id/tvAppVersion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:padding="5dp"
-                    android:text="@{viewModel.appVersion}" />
-            </android.support.design.widget.NavigationView>
-
-        </android.support.v4.widget.DrawerLayout>
 
         <android.support.v4.widget.ContentLoadingProgressBar
             android:id="@+id/address_looking_up"

@@ -5,10 +5,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
@@ -32,13 +30,11 @@ import dagger.android.support.HasSupportFragmentInjector;
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
                             implements MainNavigator, HasSupportFragmentInjector {
 
-    ViewModelProvider.Factory mViewModelFactory;
+    ViewModelProvider.Factory viewModelFactory;
 
-    private DrawerLayout mDrawer;
-    private Toolbar mToolbar;
-    private NavigationView mNavigationView;
+    private Toolbar toolbar;
 
-    ActivityMainBinding mActivityMainBinding;
+    ActivityMainBinding activityMainBinding;
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -54,16 +50,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivityMainBinding = getViewDataBinding();
-        mViewModel.setNavigator(this);
+        this.activityMainBinding = getViewDataBinding();
+        viewModel.setNavigator(this);
         setUp();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mDrawer != null)
-            mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     @Override
@@ -87,15 +81,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void setUp() {
-        mDrawer = mActivityMainBinding.drawerView;
-        mToolbar = mActivityMainBinding.toolbar;
-        mNavigationView = mActivityMainBinding.navigationView;
+        this.toolbar = this.activityMainBinding.toolbar;
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(this.toolbar);
         setupNavMenu();
 
         String version = "2123"; //getString(R.string.version) + " " + BuildConfig.VERSION_NAME;
-        mViewModel.updateAppVersion(version);
+        viewModel.updateAppVersion(version);
         setupCardContainerView();
         subscribeToLiveData();
     }
@@ -121,8 +113,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
-        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(MainViewModel.class);
-        return mViewModel;
+        viewModel = ViewModelProviders.of(this, this.viewModelFactory).get(MainViewModel.class);
+        return viewModel;
     }
 
     @Override

@@ -89,12 +89,16 @@ dependencies {
     implementation presentationDependencies.lifeCycleCommonJava8
     implementation presentationDependencies.lifeCycleReactiveStreams
     annotationProcessor presentationDependencies.lifeCycleExtensions
+    annotationProcessor presentationDependencies.lombok
+    provided presentationDependencies.lombok
 
     compile presentationDependencies.materialDesign
     compile presentationDependencies.multidex
 
     compile presentationDependencies.okHttp
 
+    compile presentationDependencies.parceler
+    annotationProcessor presentationDependencies.parcelerApi
     compile presentationDependencies.picasso
 
     compile presentationDependencies.recyclerView

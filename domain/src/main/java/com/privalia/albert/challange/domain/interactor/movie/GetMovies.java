@@ -5,6 +5,7 @@ import com.privalia.albert.challange.domain.dto.PaginatedDto;
 import com.privalia.albert.challange.domain.interactor.UseCase;
 import com.privalia.albert.challange.domain.repository.MovieRepository;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import io.reactivex.Observable;
@@ -16,6 +17,7 @@ import io.reactivex.Scheduler;
 
 public class GetMovies extends UseCase<MovieRepository, PaginatedDto<MovieDto>, GetMovies.Params> {
 
+    @Inject
     public GetMovies(MovieRepository movieRepository,
                      @Named("main_thread") Scheduler postExecutionThread,
                      @Named("io_thread") Scheduler executionThread) {

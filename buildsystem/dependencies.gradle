@@ -48,6 +48,7 @@ ext {
             okHttp:                     '3.5.0',
             okHttpLoggingInterceptor:   '3.5.0',
 
+            parceler:                   '1.1.9',
             picasso:                    '2.5.2',
 
             recyclerView:               '21.0.3',
@@ -63,8 +64,6 @@ ext {
             testingSupportLib:          '0.1',
             testRules:                  '0.5',
             testRunner:                 '0.5',
-
-
     ]
 
     lib = [
@@ -108,6 +107,9 @@ ext {
             okHttp:                     "com.squareup.okhttp3:okhttp:${libVersion.okHttp}",
             okHttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:${libVersion.okHttpLoggingInterceptor}",
 
+
+            parceler:                   "org.parceler:parceler-api:${libVersion.parceler}",
+            parcelerApi:                "org.parceler:parceler:${libVersion.parceler}",
             picasso:                    "com.squareup.picasso:picasso:${libVersion.picasso}",
 
             recyclerView:               "com.android.support:recyclerview-v7:${libVersion.recyclerView}",
@@ -145,9 +147,12 @@ ext {
             lifeCycleCommonJava8:       lib.lifeCycleCommonJava8,
             lifeCycleExtensions:        lib.lifeCycleExtensions,
             lifeCycleReactiveStreams:   lib.lifeCycleReactiveStreams,
+            lombok:                     lib.lombok,
 
             okHttp:                     lib.okHttp,
 
+            parceler:                   lib.parceler,
+            parcelerApi:                lib.parcelerApi,
             picasso:                    lib.picasso,
 
             recyclerView:               lib.recyclerView,

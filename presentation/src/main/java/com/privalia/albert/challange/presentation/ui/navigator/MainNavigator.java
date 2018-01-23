@@ -9,5 +9,4 @@ public interface MainNavigator {
     void openLoginActivity();
 
     void handleError(Throwable throwable);
-
 }
