@@ -47,5 +47,6 @@ public class MovieEntity {
 
     private String overview;
 
+    @SerializedName("release_date")
     private Date releaseDate;
 }

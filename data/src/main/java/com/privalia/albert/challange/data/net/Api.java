@@ -1,5 +1,6 @@
 package com.privalia.albert.challange.data.net;
 
+import com.privalia.albert.challange.data.entity.ConfigurationEntity;
 import com.privalia.albert.challange.data.entity.MovieEntity;
 import com.privalia.albert.challange.data.entity.PaginatedEntity;
 
@@ -15,10 +16,13 @@ import retrofit2.http.Query;
 
 public interface Api {
     @GET("3/discover/movie")
-    Observable<PaginatedEntity<MovieEntity>> movies(@Query("order_by") String orderBy,
+    Observable<PaginatedEntity<MovieEntity>> movies(@Query("sort_by") String sortBy,
                                                     @Query("page") int page);
 
     @GET("3/search/movie")
     Observable<PaginatedEntity<MovieEntity>> searchMovies(@Query("query") String query,
                                                             @Query("page") int page);
+
+    @GET("3/configuration")
+    Observable<ConfigurationEntity> configuration();
 }

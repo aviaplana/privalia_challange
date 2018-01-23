@@ -46,7 +46,13 @@
 
                     </android.support.design.widget.AppBarLayout>
 
+                    <android.support.v7.widget.RecyclerView
+                        android:background="@color/grey_500"
+                        android:id="@+id/recycler_movies"
+                        style="@style/WidthMatchHeightWrap"
+                        app:movie_items="@{viewModel.movieObservableArrayList}" />
                 </LinearLayout>
+
             </android.support.design.widget.CoordinatorLayout>
 
         <android.support.v4.widget.ContentLoadingProgressBar

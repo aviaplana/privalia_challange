@@ -25,7 +25,7 @@ android {
 
     defaultConfig {
 
-        buildConfigField "String", "API_URL", "\"http://www.google.com/\""
+        buildConfigField "String", "API_URL", "\"https://api.themoviedb.org/\""
         buildConfigField "String", "API_KEY", "\"93aea0c77bc168d8bbce3918cefefa45\""
         buildConfigField "Integer", "HTTP_CACHE_SIZE", "10485760"
         buildConfigField "String", "HTTP_CACHE_DIR", "\"okhttp_cache\""

@@ -25,7 +25,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        holder.onBind(items.get(position));
+        if (!items.isEmpty()) holder.onBind(items.get(position));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     public void addItems(List<MovieModel> movieList) {
         items.addAll(movieList);
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
     public void clearItems() {

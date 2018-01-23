@@ -38,8 +38,8 @@ public class NetworkModule {
     public OkHttpClient okHttpClient(HttpLoggingInterceptor loggingInterceptor,
                                      Interceptor apiKeyInterceptor, Cache cache) {
         return new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
                 .addInterceptor(apiKeyInterceptor)
+                .addInterceptor(loggingInterceptor)
                 .cache(cache)
                 .build();
     }
@@ -59,7 +59,7 @@ public class NetworkModule {
             HttpUrl originalHttpUrl = original.url();
 
             HttpUrl url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apikey", BuildConfig.API_KEY)
+                    .addQueryParameter("api_key", BuildConfig.API_KEY)
                     .build();
 
             Request.Builder requestBuilder = original.newBuilder()

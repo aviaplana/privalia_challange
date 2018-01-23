@@ -4,9 +4,12 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.BindingAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
@@ -14,8 +17,13 @@ import com.privalia.albert.challange.presentation.BR;
 import com.privalia.albert.challange.presentation.R;
 import com.privalia.albert.challange.presentation.base.BaseActivity;
 import com.privalia.albert.challange.presentation.databinding.ActivityMainBinding;
+import com.privalia.albert.challange.presentation.model.MovieModel;
+import com.privalia.albert.challange.presentation.ui.adapter.MovieAdapter;
 import com.privalia.albert.challange.presentation.ui.navigator.MainNavigator;
 import com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -38,6 +46,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+
+    @Inject
+    MovieAdapter movieAdapter;
 
     @Inject
     public MainActivity() { }
@@ -67,6 +78,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         return true;
     }
 
+    @BindingAdapter({"bind:movie_items"})
+    public static void setMovieItems(RecyclerView recyclerView,
+                                     ArrayList<MovieModel> movieItems) {
+        MovieAdapter adapter = (MovieAdapter) recyclerView.getAdapter();
+
+        if(adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(movieItems);
+        }
+    }
+
+
     public void onFragmentDetached(String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(tag);
@@ -74,28 +97,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             fragmentManager
                     .beginTransaction()
                     .disallowAddToBackStack()
-                    //.setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
                     .remove(fragment)
                     .commitNow();
         }
     }
 
     private void setUp() {
-        this.toolbar = this.activityMainBinding.toolbar;
+        this.activityMainBinding.recyclerMovies.setAdapter(this.movieAdapter);
+        this.activityMainBinding.recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
 
         setSupportActionBar(this.toolbar);
         setupNavMenu();
 
-        String version = "2123"; //getString(R.string.version) + " " + BuildConfig.VERSION_NAME;
+        String version = "2123";
         viewModel.updateAppVersion(version);
-        setupCardContainerView();
         subscribeToLiveData();
     }
 
     private void subscribeToLiveData() {
-    }
-
-    private void setupCardContainerView() {
     }
 
     private void setupNavMenu() {
