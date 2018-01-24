@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,7 +20,6 @@ import android.widget.Spinner;
 
 import com.privalia.albert.challange.presentation.BR;
 import com.privalia.albert.challange.presentation.R;
-import com.privalia.albert.challange.presentation.base.BaseActivity;
 import com.privalia.albert.challange.presentation.databinding.ActivityMainBinding;
 import com.privalia.albert.challange.presentation.model.MovieModel;
 import com.privalia.albert.challange.presentation.ui.adapter.MovieAdapter;
@@ -30,7 +28,6 @@ import com.privalia.albert.challange.presentation.ui.navigator.MainNavigator;
 import com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

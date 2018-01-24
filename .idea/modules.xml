@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/presentation/presentation.iml" filepath="$PROJECT_DIR$/presentation/presentation.iml" />
       <module fileurl="file://$PROJECT_DIR$/privalia.iml" filepath="$PROJECT_DIR$/privalia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privalia_challange.iml" filepath="$PROJECT_DIR$/privalia_challange.iml" />
     </modules>
   </component>
 </project>

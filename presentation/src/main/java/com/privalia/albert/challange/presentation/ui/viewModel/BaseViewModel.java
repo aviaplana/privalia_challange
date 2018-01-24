@@ -1,4 +1,4 @@
-package com.privalia.albert.challange.presentation.base;
+package com.privalia.albert.challange.presentation.ui.viewModel;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;

@@ -10,22 +10,22 @@ import io.reactivex.Scheduler;
  *
  */
 public abstract class UseCase<REPOSITORY, RESPONSE_DATA, PARAMS> {
-    protected final Scheduler mObserveThread;
-    protected final Scheduler mSubscribeThread;
-    protected final REPOSITORY mRepository;
+    protected final Scheduler observeThread;
+    protected final Scheduler subscribeThread;
+    protected final REPOSITORY repository;
 
     public UseCase(REPOSITORY repository, Scheduler postExecutionThread,
                    Scheduler executionThread) {
-        mSubscribeThread = executionThread;
-        mObserveThread = postExecutionThread;
-        mRepository = repository;
+        this.subscribeThread = executionThread;
+        this.observeThread = postExecutionThread;
+        this.repository = repository;
     }
 
     // TODO: Replace with Transformer in order to use with compose
     protected Observable<RESPONSE_DATA> addSchedulers(Observable<RESPONSE_DATA> observable) {
-        return observable.observeOn(mObserveThread)
-                .subscribeOn(mSubscribeThread)
-                .unsubscribeOn(mSubscribeThread);
+        return observable.observeOn(observeThread)
+                .subscribeOn(subscribeThread)
+                .unsubscribeOn(subscribeThread);
     }
 
     protected abstract Observable<RESPONSE_DATA> buildObservable(PARAMS params);

@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.privalia.albert.challange.domain.interactor.movie.GetMovies;
 import com.privalia.albert.challange.domain.interactor.movie.SearchMovies;
-import com.privalia.albert.challange.presentation.base.ViewModelProviderFactory;
+import com.privalia.albert.challange.presentation.ui.viewModel.ViewModelProviderFactory;
 import com.privalia.albert.challange.presentation.mapper.MoviePaginatedDtoModelMapper;
 import com.privalia.albert.challange.presentation.ui.adapter.MovieAdapter;
 import com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel;

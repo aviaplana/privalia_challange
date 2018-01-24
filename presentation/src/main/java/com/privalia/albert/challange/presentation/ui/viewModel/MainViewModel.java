@@ -7,7 +7,6 @@ import com.privalia.albert.challange.domain.dto.MovieDto;
 import com.privalia.albert.challange.domain.dto.PaginatedDto;
 import com.privalia.albert.challange.domain.interactor.movie.GetMovies;
 import com.privalia.albert.challange.domain.interactor.movie.SearchMovies;
-import com.privalia.albert.challange.presentation.base.BaseViewModel;
 import com.privalia.albert.challange.presentation.mapper.MoviePaginatedDtoModelMapper;
 import com.privalia.albert.challange.presentation.model.MovieModel;
 import com.privalia.albert.challange.presentation.ui.navigator.MainNavigator;
@@ -82,6 +81,8 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                 this.currentPage = paginatedMovies.getPage();
                 this.totalPages = paginatedMovies.getTotalPages();
                 this.movieObservableArrayList.addAll(paginatedMovies.getResults());
+            }, error -> {
+                System.out.println(error.getMessage());
             });
     }
 

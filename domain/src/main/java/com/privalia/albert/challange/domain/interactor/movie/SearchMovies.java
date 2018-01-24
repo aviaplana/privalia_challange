@@ -27,7 +27,7 @@ public class SearchMovies extends UseCase<MovieRepository, PaginatedDto<MovieDto
     @Override
     protected Observable<PaginatedDto<MovieDto>> buildObservable(Params params) {
         if (params != null) {
-            return mRepository.searchMovies(params.query, params.page);
+            return repository.searchMovies(params.query, params.page);
         } else {
             return Observable.empty();
         }

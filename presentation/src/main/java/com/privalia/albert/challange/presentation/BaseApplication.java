@@ -20,12 +20,12 @@ import io.realm.RealmConfiguration;
 public class BaseApplication extends DaggerApplication implements HasActivityInjector {
 
     @Inject
-    NetworkManager mNetworkManager;
+    NetworkManager networkManager;
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
-    private ApplicationComponent mApplicationComponent;
+    private ApplicationComponent applicationComponent;
 
 
     @Override public void onCreate() {
@@ -33,13 +33,13 @@ public class BaseApplication extends DaggerApplication implements HasActivityInj
         initRealm();
         super.onCreate();
 
-        mNetworkManager.start();
+        networkManager.start();
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-        mNetworkManager.stop();
+        networkManager.stop();
     }
 
     private void initRealm() {
@@ -51,11 +51,11 @@ public class BaseApplication extends DaggerApplication implements HasActivityInj
     }
 
     private void initializeInjection() {
-        mApplicationComponent = DaggerApplicationComponent.builder()
+        applicationComponent = DaggerApplicationComponent.builder()
                 .application(this)
                 .applicationModule(new ApplicationModule())
                 .build();
-        mApplicationComponent.inject(this);
+        applicationComponent.inject(this);
     }
 
     @Override
@@ -65,6 +65,6 @@ public class BaseApplication extends DaggerApplication implements HasActivityInj
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return mApplicationComponent;
+        return applicationComponent;
     }
 }

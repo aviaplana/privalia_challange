@@ -1,4 +1,4 @@
-package com.privalia.albert.challange.presentation.base;
+package com.privalia.albert.challange.presentation.ui.viewModel;
 
 /**
  * Created by albert on 31/12/17.

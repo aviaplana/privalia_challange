@@ -1,4 +1,4 @@
-package com.privalia.albert.challange.presentation.base.util;
+package com.privalia.albert.challange.presentation.ui.util;
 
 import android.view.View;
 import android.view.ViewGroup;

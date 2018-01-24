@@ -1,4 +1,4 @@
-package com.privalia.albert.challange.presentation.base;
+package com.privalia.albert.challange.presentation.ui.activity;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -13,7 +13,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.privalia.albert.challange.presentation.base.contract.FragmentCallbackInterface;
+import com.privalia.albert.challange.presentation.ui.contract.FragmentCallbackInterface;
+import com.privalia.albert.challange.presentation.ui.viewModel.BaseViewModel;
 
 import javax.inject.Inject;
 
