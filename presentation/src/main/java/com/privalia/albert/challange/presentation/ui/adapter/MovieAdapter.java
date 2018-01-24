@@ -42,7 +42,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         if (items != null && items.size() > 0) {
             return items.size();
         } else {
-            return 1;
+            return 0;
         }
     }
 

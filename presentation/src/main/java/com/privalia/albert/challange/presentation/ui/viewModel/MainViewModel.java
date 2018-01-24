@@ -1,6 +1,7 @@
 package com.privalia.albert.challange.presentation.ui.viewModel;
 
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
 import com.privalia.albert.challange.data.entity.MovieEntity;
@@ -19,7 +20,7 @@ import javax.inject.Inject;
 
 public class MainViewModel extends BaseViewModel<MainNavigator> {
     private final ObservableArrayList<MovieModel> movieObservableArrayList = new ObservableArrayList<>();
-    private final ObservableField<String> appVersion = new ObservableField<>();
+    private final ObservableBoolean sortDir = new ObservableBoolean();
 
     private GetMovies getMovies;
     private SearchMovies searchMovies;
@@ -35,13 +36,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
         this.getMovies = getMovies;
         this.searchMovies = searchMovies;
         this.mapper = mapper;
-        fetchMovies();
     }
 
-    public void fetchMovies() {
+    public void fetchMovies(String order) {
         if (totalPages == -1 || currentPage < totalPages) {
             this.setIsLoading(true);
-            this.getMovies.execute(GetMovies.Params.listParams("original_title", true, currentPage + 1))
+            this.getMovies.execute(GetMovies.Params.listParams(order, sortDir.get(), currentPage + 1))
                     .map(listMovies -> this.mapper.map2(listMovies))
                     .doFinally(() -> this.setIsLoading(false))
                     .subscribe(paginatedMovies -> {
@@ -52,16 +52,24 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
         }
     }
 
-    public void updateAppVersion(String version) {
-        appVersion.set(version);
+    public void clearMovies() {
+        this.movieObservableArrayList.clear();
+        this.currentPage = 0;
+        this.totalPages = -1;
     }
 
-    public ObservableField<String> getAppVersion() {
-        return appVersion;
+    public void toggleSortDir() {
+        sortDir.set(!sortDir.get());
+        clearMovies();
+    }
+
+    public ObservableBoolean getSortDir() {
+        return sortDir;
     }
 
     public ObservableArrayList<MovieModel> getMovieObservableArrayList() {
         return this.movieObservableArrayList;
     }
+
 
 }

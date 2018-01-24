@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.privalia.albert.challange.presentation.BR;
 import com.privalia.albert.challange.presentation.R;
@@ -19,6 +24,7 @@ import com.privalia.albert.challange.presentation.base.BaseActivity;
 import com.privalia.albert.challange.presentation.databinding.ActivityMainBinding;
 import com.privalia.albert.challange.presentation.model.MovieModel;
 import com.privalia.albert.challange.presentation.ui.adapter.MovieAdapter;
+import com.privalia.albert.challange.presentation.ui.handler.MainActivityHandler;
 import com.privalia.albert.challange.presentation.ui.navigator.MainNavigator;
 import com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel;
 
@@ -36,7 +42,8 @@ import dagger.android.support.HasSupportFragmentInjector;
  */
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
-                            implements MainNavigator, HasSupportFragmentInjector {
+                            implements MainNavigator, HasSupportFragmentInjector,
+                                        Spinner.OnItemSelectedListener, MainActivityHandler {
 
     ViewModelProvider.Factory viewModelFactory;
 
@@ -62,8 +69,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.activityMainBinding = getViewDataBinding();
+        this.activityMainBinding.setVariable(BR.handlers, this);
         viewModel.setNavigator(this);
         setUp();
+        viewModel.fetchMovies(this.activityMainBinding.sortValue.getSelectedItem().toString());
     }
 
     @Override
@@ -89,6 +98,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
     }
 
+    @BindingAdapter({"android:onClick"})
+    public static void setOnClick(View view, View.OnClickListener clickListener) {
+        view.setOnClickListener(clickListener);
+    }
+
 
     public void onFragmentDetached(String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -103,6 +117,35 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void setUp() {
+        setRecyclerView();
+
+        setSortValueSpinner();
+
+        setSupportActionBar(this.toolbar);
+
+        setSortDirectionButton();
+
+        subscribeToLiveData();
+    }
+
+    private void setSortDirectionButton() {
+    }
+
+    private void setSortValueSpinner() {
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.sort_values, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        this.activityMainBinding.sortValue.setAdapter(adapter);
+
+        this.activityMainBinding.sortValue.setOnItemSelectedListener(this);
+    }
+
+    private void setRecyclerView() {
         this.activityMainBinding.recyclerMovies.setAdapter(this.movieAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         this.activityMainBinding.recyclerMovies.setLayoutManager(linearLayoutManager);
@@ -118,25 +161,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     // End has been reached
                     // Do something
                     if (!viewModel.getIsLoading().get()) {
-                        viewModel.fetchMovies();
+                        viewModel.fetchMovies(activityMainBinding.sortValue.getSelectedItem().toString());
                     }
                 }
             }
         });
-
-
-        setSupportActionBar(this.toolbar);
-        setupNavMenu();
-
-        String version = "2123";
-        viewModel.updateAppVersion(version);
-        subscribeToLiveData();
     }
 
     private void subscribeToLiveData() {
-    }
-
-    private void setupNavMenu() {
     }
 
     @Override
@@ -168,5 +200,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        this.viewModel.clearMovies();
+        this.viewModel.fetchMovies(parent.getItemAtPosition(position).toString());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
+    public void onSortDirClicked(View view) {
+        this.viewModel.toggleSortDir();
+        this.viewModel.fetchMovies(activityMainBinding.sortValue.getSelectedItem().toString());
     }
 }

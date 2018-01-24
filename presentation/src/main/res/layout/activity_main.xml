@@ -9,6 +9,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="handlers"
+            type="com.privalia.albert.challange.presentation.ui.handler.MainActivityHandler" />
+
+        <variable
             name="viewModel"
             type="com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel" />
     </data>
@@ -45,6 +49,20 @@
                             android:background="@color/grey_300" />
 
                     </android.support.design.widget.AppBarLayout>
+
+                    <LinearLayout
+                        style="@style/WidthMatchHeightWrap.horizontal">
+                        <Spinner
+                            android:id="@+id/sort_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        
+                        <ImageButton
+                            android:id="@+id/sort_direction"
+                            android:onClick="@{(v) -> handlers.onSortDirClicked(v)}"
+                            style="@style/WidthWrapHeightWrap"
+                            android:src="@{viewModel.sortDir ? @drawable/ic_arrow_upward_black_24dp : @drawable/ic_arrow_downward_black_24dp}"/>
+                    </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:background="@color/grey_500"
