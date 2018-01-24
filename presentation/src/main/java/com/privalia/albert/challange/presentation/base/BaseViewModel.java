@@ -11,38 +11,37 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseViewModel<NAVIGATOR> extends ViewModel {
 
-    private NAVIGATOR mNavigator;
-    private final ObservableBoolean mIsLoading = new ObservableBoolean(false);
-
-    private CompositeDisposable mCompositeDisposable;
+    private NAVIGATOR navigator;
+    private final ObservableBoolean isLoading = new ObservableBoolean(false);
+    private CompositeDisposable compositeDisposable;
 
     public BaseViewModel() {
-        this.mCompositeDisposable = new CompositeDisposable();
+        this.compositeDisposable = new CompositeDisposable();
     }
 
     public void setNavigator(NAVIGATOR navigator) {
-        this.mNavigator = navigator;
+        this.navigator = navigator;
     }
 
     public NAVIGATOR getNavigator() {
-        return mNavigator;
+        return navigator;
     }
 
     public CompositeDisposable getCompositeDisposable() {
-        return mCompositeDisposable;
+        return this.compositeDisposable;
     }
 
     public ObservableBoolean getIsLoading() {
-        return mIsLoading;
+        return this.isLoading;
     }
 
     public void setIsLoading(boolean isLoading) {
-        mIsLoading.set(isLoading);
+        this.isLoading.set(isLoading);
     }
 
     @Override
     protected void onCleared() {
-        mCompositeDisposable.dispose();
+        this.compositeDisposable.dispose();
         super.onCleared();
     }
 }

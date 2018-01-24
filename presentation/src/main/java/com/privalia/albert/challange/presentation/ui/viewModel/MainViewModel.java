@@ -25,6 +25,9 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
     private SearchMovies searchMovies;
     private MoviePaginatedDtoModelMapper mapper;
 
+    private int currentPage = 0;
+    private int totalPages = -1;
+
     @Inject
     public MainViewModel(GetMovies getMovies, SearchMovies searchMovies,
                          MoviePaginatedDtoModelMapper mapper) {
@@ -35,12 +38,18 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
         fetchMovies();
     }
 
-    private void fetchMovies() {
-        this.getMovies.execute(GetMovies.Params.listParams("original_title", true, 1))
-                .map(listMovies -> this.mapper.map2(listMovies))
-                .subscribe(paginatedMovies -> {
-                    this.movieObservableArrayList.addAll(paginatedMovies.getResults());
-                });
+    public void fetchMovies() {
+        if (totalPages == -1 || currentPage < totalPages) {
+            this.setIsLoading(true);
+            this.getMovies.execute(GetMovies.Params.listParams("original_title", true, currentPage + 1))
+                    .map(listMovies -> this.mapper.map2(listMovies))
+                    .doFinally(() -> this.setIsLoading(false))
+                    .subscribe(paginatedMovies -> {
+                        this.currentPage = paginatedMovies.getPage();
+                        this.totalPages = paginatedMovies.getTotalPages();
+                        this.movieObservableArrayList.addAll(paginatedMovies.getResults());
+                    });
+        }
     }
 
     public void updateAppVersion(String version) {

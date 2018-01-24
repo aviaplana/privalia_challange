@@ -104,7 +104,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private void setUp() {
         this.activityMainBinding.recyclerMovies.setAdapter(this.movieAdapter);
-        this.activityMainBinding.recyclerMovies.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        this.activityMainBinding.recyclerMovies.setLayoutManager(linearLayoutManager);
+
+        this.activityMainBinding.recyclerMovies.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int visibleThreshold = 2;
+                int totalItemCount = linearLayoutManager.getItemCount();
+                int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                if (totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                    // End has been reached
+                    // Do something
+                    if (!viewModel.getIsLoading().get()) {
+                        viewModel.fetchMovies();
+                    }
+                }
+            }
+        });
+
 
         setSupportActionBar(this.toolbar);
         setupNavMenu();
