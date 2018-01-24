@@ -8,6 +8,7 @@ import com.privalia.albert.challange.presentation.R;
 import com.privalia.albert.challange.presentation.model.MovieModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,7 +26,16 @@ public class MovieItemViewModel {
         this.imageUrl = new ObservableField<String>(movie.getPosterPath());
         this.title = new ObservableField<String>(movie.getOriginalTitle());
         Date releaseDate = movie.getReleaseDate();
-        this.year = new ObservableField<String>(releaseDate == null ? "" : releaseDate.toString());
+
+        String year = "";
+
+        if (releaseDate != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(releaseDate);
+            year = String.valueOf(calendar.get(Calendar.YEAR));
+        }
+
+        this.year = new ObservableField<String>(year);
         this.overview = new ObservableField<String>(movie.getOverview());
     }
 

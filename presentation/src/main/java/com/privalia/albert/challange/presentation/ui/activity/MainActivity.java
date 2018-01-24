@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -121,14 +122,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
         setSortValueSpinner();
 
-        setSupportActionBar(this.toolbar);
+        setSupportActionBar(this.toolbar);;
 
-        setSortDirectionButton();
+        setSearchText();
 
         subscribeToLiveData();
     }
 
-    private void setSortDirectionButton() {
+    private void setSearchText() {
+        //this.activityMainBinding.textQuery.setText("hola");
     }
 
     private void setSortValueSpinner() {
@@ -217,5 +219,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void onSortDirClicked(View view) {
         this.viewModel.toggleSortDir();
         this.viewModel.fetchMovies(activityMainBinding.sortValue.getSelectedItem().toString());
+    }
+
+    @Override
+    public void onTextChanged(Editable s) {
+        if (viewModel.hasQuery().get()) {
+            this.viewModel.searchMovies();
+        } else {
+            this.viewModel.fetchMovies(activityMainBinding.sortValue.getSelectedItem().toString());
+        }
     }
 }

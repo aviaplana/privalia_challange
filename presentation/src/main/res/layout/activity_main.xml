@@ -51,6 +51,7 @@
                     </android.support.design.widget.AppBarLayout>
 
                     <LinearLayout
+                        android:visibility="@{viewModel.hasQuery() ? View.INVISIBLE : View.VISIBLE}"
                         style="@style/WidthMatchHeightWrap.horizontal">
                         <Spinner
                             android:id="@+id/sort_value"
@@ -63,6 +64,12 @@
                             style="@style/WidthWrapHeightWrap"
                             android:src="@{viewModel.sortDir ? @drawable/ic_arrow_upward_black_24dp : @drawable/ic_arrow_downward_black_24dp}"/>
                     </LinearLayout>
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/text_search"
+                        android:text="@={viewModel.query}"
+                        android:afterTextChanged="@{handlers.onTextChanged}"
+                        style="@style/WidthMatchHeightWrap" />
 
                     <android.support.v7.widget.RecyclerView
                         android:background="@color/grey_500"

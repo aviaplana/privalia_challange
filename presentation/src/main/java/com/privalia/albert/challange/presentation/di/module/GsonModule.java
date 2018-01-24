@@ -30,7 +30,7 @@ public class GsonModule {
         GsonBuilder gsonBuilder = new GsonBuilder();
 
         gsonBuilder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             @Override
             public Date deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context)
                     throws JsonParseException {
