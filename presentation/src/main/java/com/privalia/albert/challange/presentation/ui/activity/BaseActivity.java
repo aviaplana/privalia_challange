@@ -49,12 +49,6 @@ public abstract class BaseActivity<VIEWDATABINDING extends ViewDataBinding,
         this.viewDataBinding.executePendingBindings();
     }
 
-    /*
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }*/
-
     @TargetApi(Build.VERSION_CODES.M)
     public void requestPermissionsSafely(String[] permissions, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -89,7 +83,6 @@ public abstract class BaseActivity<VIEWDATABINDING extends ViewDataBinding,
 
     public void showLoading() {
         hideLoading();
-        //mProgressDialog = CommonUtils.showLoadingDialog(this);
     }
 
     public void hideLoading() {

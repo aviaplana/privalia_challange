@@ -177,6 +177,7 @@ ext {
 
             mockito:            lib.mockito,
 
+            roboelectric:       lib.roboelectric,
             rxPresso:           lib.rxPresso,
 
             testRules:          lib.testRules,

@@ -24,7 +24,7 @@ android {
     buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
 
     defaultConfig {
-
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "API_URL", "\"https://api.themoviedb.org/\""
         buildConfigField "String", "API_KEY", "\"93aea0c77bc168d8bbce3918cefefa45\""
         buildConfigField "Integer", "HTTP_CACHE_SIZE", "10485760"
@@ -108,6 +108,12 @@ dependencies {
     compile presentationDependencies.rxJava
     compile presentationDependencies.rxAndroid
 
+
+    testCompile presentationTestDependencies.junit
+
+    testCompile presentationTestDependencies.mockito
+
+    testCompile presentationTestDependencies.roboelectric
 
 
     androidTestCompile presentationTestDependencies.androidAnnotations

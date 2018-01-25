@@ -13,8 +13,6 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.DaggerApplication;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 
 public class BaseApplication extends DaggerApplication implements HasActivityInjector {
@@ -30,7 +28,6 @@ public class BaseApplication extends DaggerApplication implements HasActivityInj
 
     @Override public void onCreate() {
         initializeInjection();
-        initRealm();
         super.onCreate();
 
         networkManager.start();
@@ -40,14 +37,6 @@ public class BaseApplication extends DaggerApplication implements HasActivityInj
     public void onTerminate() {
         super.onTerminate();
         networkManager.stop();
-    }
-
-    private void initRealm() {
-        Realm.init(getApplicationContext());
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder()
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(realmConfig);
     }
 
     private void initializeInjection() {

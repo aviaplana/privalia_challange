@@ -51,6 +51,7 @@
                     </android.support.design.widget.AppBarLayout>
 
                     <LinearLayout
+                        android:id="@+id/layout_order"
                         android:visibility="@{viewModel.hasQuery() ? View.INVISIBLE : View.VISIBLE}"
                         style="@style/WidthMatchHeightWrap.horizontal">
                         <Spinner
@@ -81,7 +82,7 @@
             </android.support.design.widget.CoordinatorLayout>
 
         <android.support.v4.widget.ContentLoadingProgressBar
-            android:id="@+id/address_looking_up"
+            android:id="@+id/loading"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

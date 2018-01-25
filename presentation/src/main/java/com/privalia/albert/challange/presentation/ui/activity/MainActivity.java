@@ -120,14 +120,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setSortValueSpinner();
 
         setSupportActionBar(this.toolbar);;
-
-        setSearchText();
-
-        subscribeToLiveData();
-    }
-
-    private void setSearchText() {
-        //this.activityMainBinding.textQuery.setText("hola");
     }
 
     private void setSortValueSpinner() {
@@ -165,19 +157,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 }
             }
         });
-    }
-
-    private void subscribeToLiveData() {
-    }
-
-    @Override
-    public void openLoginActivity() {
-        finish();
-    }
-
-    @Override
-    public void handleError(Throwable throwable) {
-        // handle error
     }
 
     @Override
