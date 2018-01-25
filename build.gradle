@@ -23,7 +23,7 @@ allprojects {
     }
 
     ext {
-        androidApplicationId = 'com.privalia.albert.challange.presentation'
+        androidApplicationId = 'com.privalia.albert.challenge.presentation'
         androidVersionCode = 1
         androidVersionName = "0.2"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"

@@ -10,11 +10,11 @@
 
         <variable
             name="handlers"
-            type="com.privalia.albert.challange.presentation.ui.handler.MainActivityHandler" />
+            type="com.privalia.albert.challenge.presentation.ui.handler.MainActivityHandler" />
 
         <variable
             name="viewModel"
-            type="com.privalia.albert.challange.presentation.ui.viewModel.MainViewModel" />
+            type="com.privalia.albert.challenge.presentation.ui.viewModel.MainViewModel" />
     </data>
 
 

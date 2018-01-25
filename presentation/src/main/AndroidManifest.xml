@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.privalia.albert.challange.presentation">
+    package="com.privalia.albert.challenge.presentation">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -29,7 +29,7 @@
         </provider>
 
 
-        <activity android:name="com.privalia.albert.challange.presentation.ui.activity.MainActivity">
+        <activity android:name="com.privalia.albert.challenge.presentation.ui.activity.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.privalia.albert.challange.data.manager.impl.NetworkManagerImpl" >
+        <receiver android:name="com.privalia.albert.challenge.data.manager.impl.NetworkManagerImpl" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.privalia.albert.challange.presentation.ui.viewModel.MovieItemViewModel" />
+            type="com.privalia.albert.challenge.presentation.ui.viewModel.MovieItemViewModel" />
 
     </data>
 
